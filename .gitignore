@@ -1,4 +1,5 @@
-secret/**
-docs/**
-imports/**
-traitements/**
+secret/
+docs/
+imports/
+traitements/
+!*/README.md
