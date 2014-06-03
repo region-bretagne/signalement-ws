@@ -118,7 +118,7 @@ $xml_output .= '<rss version="2.0"
   xmlns:atom="http://www.w3.org/2005/Atom"   
   xmlns:dc="http://purl.org/dc/elements/1.1/">';
 
-$xml_output .= '<channel><atom:link href="http://kartenn.region-bretagne.fr/ws/rss/rss.php" rel="self" type="application/rss+xml" />';
+$xml_output .= '<channel><atom:link href="http://kartenn.region-bretagne.fr/signalement/ws/rss.php" rel="self" type="application/rss+xml" />';
 $xml_output .= '<title>SIGN\'ADRESSE</title>
  <description> La couche Signalement voies adresses en Bretagne recense les ajouts, suppressions et modifications opérés sur les voies et adresses en Bretagne</description>
  
@@ -166,11 +166,11 @@ $xml_output .= '<title>SIGN\'ADRESSE</title>
 	  $ur2='<li><strong>Pièce Jointe n°2: </strong><a href='.$url2.' ><img src='.$urlimg1.' style="width:29px;"></a> </li>';
 	}
 	
-	 $link="http://kartensig/sviewer/?x=".$l["x_long"]."&y=".$l["y_lat"]."&z=17&bl=0&layers=edit_rb%3Asignalement_adresse*signalement&title=SIGN\'ADRESSE&amp;q=1 ";
+	 $link="http://kartenn.region-bretagne.fr/sviewer/?x=".$l["x_long"]."&y=".$l["y_lat"]."&z=17&bl=0&layers=edit_rb%3Asignalement_adresse*signalement&title=SIGN\'ADRESSE&amp;q=1 ";
 	  
       $xml_output .='<item>';
 	  $xml_output .='<guid isPermaLink="false">signalement'.$titre.'</guid>';
-	 $xml_output .='<link> http://kartensig/sviewer/?x='.$l["x_long"].'&amp;y='.$l["y_lat"].'&amp;z=17&amp;bl=0&amp;layers=edit_rb%3Asignalement_adresse*signalement&amp;title=SIGN\'ADRESSE&amp;q=1 </link>';
+	 $xml_output .='<link> http://kartenn.region-bretagne.fr/sviewer/?x='.$l["x_long"].'&amp;y='.$l["y_lat"].'&amp;z=17&amp;bl=0&amp;layers=edit_rb%3Asignalement_adresse*signalement&amp;title=SIGN\'ADRESSE&amp;q=1 </link>';
       $xml_output .= '<title>Signalement n°'.$titre.'</title>';
 	  $xml_output.= '<pubDate>'.$date2.' GMT </pubDate>'; 
 	
@@ -228,5 +228,4 @@ $xml_output .= '</channel>';
 $xml_output .= '</rss>';
 print $xml_output;
 	pg_close($dbh);
-fclose($fp);
 ?>
