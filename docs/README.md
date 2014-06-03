@@ -1,4 +1,4 @@
 docs
 ==============
 
-Ce dossier contient les pièces jointes uploadées et script upload.php
+Ce dossier contient les pièces jointes uploadées par le script upload.php
