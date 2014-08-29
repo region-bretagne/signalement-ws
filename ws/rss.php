@@ -230,9 +230,12 @@ treatment of the SQL request Result
 		<li><strong>Auteur: </strong>'.str_replace ( '[AT]', '<img src="http://kartenn.region-bretagne.fr/img/logos/separateur.jpg">', $author).'</li>'. $ur1. $ur2.'
 		</td></ul></tr></table>]]>'.'</description>'; 
 	 }
-	$xml_output .= '</item>';	
+	$xml_output .= '</item>';
+
 	$url1=NULL;
     }
+    $xml_output.='</channel>
+    </rss>';
 print $xml_output;
 	pg_close($dbh);
 ?>
