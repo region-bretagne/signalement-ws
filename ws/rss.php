@@ -22,7 +22,19 @@ if (!$dbh) {
 * All reporting in DataBase 
 * And this with an option on the number of attachments
 */
+$urlcql="";
+if (isset($_GET["cql_url"]))
+{
+	$nbr=$_GET["cql_url"];
+	if($nbr==1){
+		$urlcql="(SUBSTRING(url_1 FROM 1 FOR 4)='http' OR SUBSTRING(url_2 FROM 1 FOR 4)='http') AND ";
+	}
+	if($nbr==2){
+		$urlcql="(SUBSTRING(url_1 FROM 1 FOR 4)='http' AND SUBSTRING(url_2 FROM 1 FOR 4)='http') AND ";
+	}
+	
 
+}
  if (isset($_GET["cql_filter"])) {
 	$p=$_GET["cql_filter"];
 	if(stristr($p,"intersect")) {
@@ -42,7 +54,7 @@ if (!$dbh) {
 						ST_X(ST_Transform(geom::geometry,3857)) as x_long,
 						ST_Y(ST_Transform(geom::geometry,3857)) as y_lat,
 						date_saisie,
-						contributeur from a_05_adresses.signalement_adresse where ST_".$p ." AND date_saisie> now()- interval '6 month' ORDER BY date_saisie DESC,idsignal DESC";
+						contributeur from a_05_adresses.signalement_adresse where ".$urlcql." ST_".$p." AND date_saisie> now()- interval '6 month' ORDER BY date_saisie DESC,idsignal DESC";
 				}
 	else {
 		if(stristr($p,("between")))
@@ -63,7 +75,7 @@ if (!$dbh) {
 								ST_X(ST_Transform(geom::geometry,3857)) as x_long,
 								ST_Y(ST_Transform(geom::geometry,3857)) as y_lat,
 								date_saisie ,
-								contributeur from a_05_adresses.signalement_adresse where " .$p." AND  date_saisie> now()- interval '6 month' ORDER BY date_saisie DESC,idsignal DESC" ;
+								contributeur from a_05_adresses.signalement_adresse where " .$urlcql.$p." AND  date_saisie> now()- interval '6 month' ORDER BY date_saisie DESC,idsignal DESC" ;
 			}	 
 		else { 
 			
@@ -81,7 +93,7 @@ if (!$dbh) {
 								ST_X(ST_Transform(geom::geometry,3857)) as x_long,
 								ST_Y(ST_Transform(geom::geometry,3857)) as y_lat,
 								date_saisie ,
-								contributeur from a_05_adresses.signalement_adresse where " .$p." AND  date_saisie> now()- interval '6 month' ORDER BY date_saisie DESC,idsignal DESC" ;					
+								contributeur from a_05_adresses.signalement_adresse where ".$urlcql.$p." AND  date_saisie> now()- interval '6 month' ORDER BY date_saisie DESC,idsignal DESC" ;					
 			 }}}
 else {
 	$sql = "Select idsignal,
@@ -99,7 +111,7 @@ else {
 						ST_Y(ST_Transform(geom::geometry,3857)) as y_lat,
 						date_saisie ,
 						contributeur 
- 			from  a_05_adresses.signalement_adresse where date_saisie> now()- interval '6 month' ORDER BY date_saisie DESC,idsignal DESC" ;
+ 			from  a_05_adresses.signalement_adresse where ".$urlcql."date_saisie> now()- interval '6 month' ORDER BY date_saisie DESC,idsignal DESC" ;
 	}
 $result = pg_query($dbh, $sql); 
 if (!$result) {
