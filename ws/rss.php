@@ -23,9 +23,9 @@ if (!$dbh) {
 * And this with an option on the number of attachments
 */
 $urlcql="";
-if (isset($_GET["cql_url"]))
+if (isset($_GET["pj"]))
 {
-	$nbr=$_GET["cql_url"];
+	$nbr=$_GET["pj"];
 	if($nbr==1){
 		$urlcql="(SUBSTRING(url_1 FROM 1 FOR 4)='http' OR SUBSTRING(url_2 FROM 1 FOR 4)='http') AND ";
 	}
